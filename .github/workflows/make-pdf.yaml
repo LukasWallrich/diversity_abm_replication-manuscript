@@ -20,14 +20,16 @@ jobs:
         run: |
           python yaml-to-latex.py        
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
+      - uses: xu-cheng/texlive-action/full@v1
         with:
-          root_file: article.tex
-          args: -pdf -pdflatex="xelatex -interaction=nonstopmode" -use-make article.tex
+          run: |
+            python -m pip install --upgrade pip
+            pip install pyyaml
+            apk add make
+            make
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
           name: PDF
-          path: main.pdf          
+          path: article.pdf          
