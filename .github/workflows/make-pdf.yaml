@@ -17,10 +17,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml
 
-      - uses: xu-cheng/texlive-action/full@v1
+      - name: first make
+        continue-on-error: true
+        uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
             apk add make
+            make
+
+      - name: first make
+        continue-on-error: true
+        uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            apk add make
+            make
+            biber article
+            touch article.tex
+            make
+            touch article.tex
             make
 
       - name: Upload PDF file
