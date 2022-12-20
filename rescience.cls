@@ -328,19 +328,17 @@
 \usepackage{biblatex}
 
 \DeclareCiteCommand{\supercite}[\mkbibsuperscript]
-  {\usebibmacro{cite:init}%
-   \let\multicitedelim=\supercitedelim
-   \iffieldundef{prenote}
+  {\iffieldundef{prenote}
      {}
      {\BibliographyWarning{Ignoring prenote argument}}%
    \iffieldundef{postnote}
      {}
      {\BibliographyWarning{Ignoring postnote argument}}%
-  \bibopenbracket}%
+   \bibopenbracket}%
   {\usebibmacro{citeindex}%
-   \usebibmacro{cite:comp}}
-  {}
-  {\usebibmacro{cite:dump}\bibclosebracket}
+   \usebibmacro{cite}}
+  {\supercitedelim}
+  {\bibclosebracket}
 
 %% The https://oadoi.org domain chooses open-access versions of an
 %% article, preferring publisher versions (gold open access) if
