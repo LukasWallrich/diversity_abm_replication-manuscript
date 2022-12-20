@@ -323,6 +323,22 @@
 %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
 %\DeclareFieldFormat[article]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
 
+%% Add [] around citation superscripts to distinguish from footnotes
+
+\usepackage{biblatex}
+
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]
+  {\iffieldundef{prenote}
+     {}
+     {\BibliographyWarning{Ignoring prenote argument}}%
+   \iffieldundef{postnote}
+     {}
+     {\BibliographyWarning{Ignoring postnote argument}}}
+  {\usebibmacro{citeindex}%
+   \bibopenbracket\usebibmacro{cite}\bibclosebracket}
+  {\supercitedelim}
+  {}
+
 %% The https://oadoi.org domain chooses open-access versions of an
 %% article, preferring publisher versions (gold open access) if
 %% possible, otherwise preprints (green open access), and only falls
